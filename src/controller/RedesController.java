@@ -12,26 +12,20 @@ public class RedesController {
 		return soNome;
 	}
 
-	public void callProcess(String process) {
+	public String ifconfigOrIpAddr() {
+		String resultado;
 		try {
-			Process getProcess = Runtime.getRuntime().exec(process);
-		} catch (Exception e) {
-			String errorMessage = e.getMessage();
+			Process process = Runtime.getRuntime().exec("ifconfig");
+		} catch (Exception e1) {
 
-			if (errorMessage.contains("740")) {
-				StringBuffer buffer = new StringBuffer();
-				buffer.append("cmd /c ");
-				buffer.append(" ");
-				buffer.append(process);
-				try {
-					Runtime.getRuntime().exec(buffer.toString());
-				} catch (Exception e1) {
-					System.err.println(e1.getMessage());
-				}
-			} else {
-				e.printStackTrace();
+			try {
+				Process process = Runtime.getRuntime().exec("ip addr");
+			} catch (Exception e2) {
+				System.err.println(e2.getMessage());
 			}
+			return resultado = "ip addr";
 		}
+		return resultado = "ifconfig";
 	}
 
 	public void ip() {
@@ -51,10 +45,9 @@ public class RedesController {
 				String linha = buffer.readLine();
 				String adaptador = "";
 				while (linha != null) {
-					if(linha.contains("Adaptador")) {
+					if (linha.contains("Adaptador")) {
 						adaptador = linha;
-					}
-					else if (linha.contains("IPv4")) {
+					} else if (linha.contains("IPv4")) {
 						System.out.println(adaptador);
 						System.out.println(linha);
 					}
@@ -68,24 +61,31 @@ public class RedesController {
 				e.printStackTrace();
 			}
 		} else if (os.contains("Linux")) {
+			String comando = ifconfigOrIpAddr();
+
 			try {
-				Process p = Runtime.getRuntime().exec("ipconfig");
+				Process p = Runtime.getRuntime().exec(comando);
 				InputStream fluxo = p.getInputStream();
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
-
+				String adaptador = "";
 				while (linha != null) {
-					System.out.println(linha);
+					if (linha.contains("Adaptador")) {
+						adaptador = linha;
+					} else if (linha.contains("IPv4")) {
+						System.out.println(adaptador);
+						System.out.println(linha);
+					}
 					linha = buffer.readLine();
 				}
 
+				fluxo.close();
+				leitor.close();
+				buffer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else {
-
 		}
-
 	}
 }
