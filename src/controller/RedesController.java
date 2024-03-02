@@ -12,7 +12,7 @@ public class RedesController {
 		return soNome;
 	}
 
-	public String ifconfigOrIpAddr() {
+	private String ifconfigOrIpAddr() {
 		String resultado;
 		try {
 			Process process = Runtime.getRuntime().exec("ifconfig");
@@ -88,4 +88,44 @@ public class RedesController {
 			}
 		}
 	}
+	
+	public void ping() {
+		String os = os();
+		
+		if(os.contains("Windows")) {
+			try {
+				Process p = Runtime.getRuntime().exec("ping -4 -n 10 www.google.com.br");
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String linha = buffer.readLine();
+				String[] linhMedia = null;
+				String media = null;
+				while(linha != null) {
+					if(linha.contains("dia =")) {
+						linhMedia = linha.split("dia = ");
+						break;
+					}
+					linha = buffer.readLine();
+				}
+				fluxo.close();
+				leitor.close();
+				buffer.close();
+				
+				for (String el : linhMedia) {
+					if(!el.contains("dia =")) {
+						media = el;
+					}
+				}
+				
+				System.out.println(media);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else if (os.contains("Linux")) {
+			
+		}
+	}
+
 }
