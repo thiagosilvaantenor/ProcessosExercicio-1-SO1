@@ -71,9 +71,9 @@ public class RedesController {
 				String linha = buffer.readLine();
 				String adaptador = "";
 				while (linha != null) {
-					if (linha.contains("Adaptador")) {
+					if (linha.contains("<")) {
 						adaptador = linha;
-					} else if (linha.contains("IPv4")) {
+					} else if (linha.contains("inet ")) {
 						System.out.println(adaptador);
 						System.out.println(linha);
 					}
