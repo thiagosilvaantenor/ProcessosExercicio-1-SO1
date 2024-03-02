@@ -69,10 +69,16 @@ Linux: ping -4 -c 10 www.google.com.br
 Agradeço ao professor da disciplina de Sistemas Operacionais 1, Leandro Colevati, por todo o aprendizado passado.
 
 ## Autor
+
 <div align="center">
 <a href="https://www.linkedin.com/in/thiago-antenor/">
 <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/99970279?v=4" width="100px;" alt="foto do autor"/>
- <br/>
+ <br />
  <sub><b>Thiago Silva Antenor</b></sub></a> <a href="https://www.linkedin.com/in/thiago-antenor/" title="Linkedin"> 🧑🏾‍💻</a>
 
+
 Feito por Thiago Silva Antenor 👨🏾‍💻 Entre em contato!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thiago-antenor/)](https://www.linkedin.com/in/thiago-antenor/) 
+[![Gmail Badge](https://img.shields.io/badge/-thiagoantenor31@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:thiagoantenor31.com)](mailto:thiagoantenor31.com)
+</div>
