@@ -99,11 +99,11 @@ public class RedesController {
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
-				String[] linhMedia = null;
+				String[] linhaMedia = null;
 				String media = null;
 				while(linha != null) {
 					if(linha.contains("dia =")) {
-						linhMedia = linha.split("dia = ");
+						linhaMedia = linha.split("dia = ");
 						break;
 					}
 					linha = buffer.readLine();
@@ -112,7 +112,7 @@ public class RedesController {
 				leitor.close();
 				buffer.close();
 				
-				for (String el : linhMedia) {
+				for (String el : linhaMedia) {
 					if(!el.contains("dia =")) {
 						media = el;
 					}
