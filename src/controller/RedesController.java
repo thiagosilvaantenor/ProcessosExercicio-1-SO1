@@ -141,9 +141,13 @@ public class RedesController {
 						media = linhaMedia[1];
 						break;
 					}
-
-					System.out.println(media + "ms");
+					linha = buffer.readLine();
 				}
+				fluxo.close();
+				leitor.close();
+				buffer.close();
+				
+				System.out.println(media + "ms");
 
 			} catch (IOException e) {
 				e.printStackTrace();
