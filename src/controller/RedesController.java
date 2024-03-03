@@ -88,11 +88,11 @@ public class RedesController {
 			}
 		}
 	}
-	
+
 	public void ping() {
 		String os = os();
-		
-		if(os.contains("Windows")) {
+
+		if (os.contains("Windows")) {
 			try {
 				Process p = Runtime.getRuntime().exec("ping -4 -n 10 www.google.com.br");
 				InputStream fluxo = p.getInputStream();
@@ -101,8 +101,8 @@ public class RedesController {
 				String linha = buffer.readLine();
 				String[] linhaMedia = null;
 				String media = null;
-				while(linha != null) {
-					if(linha.contains("dia =")) {
+				while (linha != null) {
+					if (linha.contains("dia =")) {
 						linhaMedia = linha.split("dia = ");
 						break;
 					}
@@ -111,20 +111,43 @@ public class RedesController {
 				fluxo.close();
 				leitor.close();
 				buffer.close();
-				
+
 				for (String el : linhaMedia) {
-					if(!el.contains("dia =")) {
+					if (!el.contains("dia =")) {
 						media = el;
 					}
 				}
-				
+
 				System.out.println(media);
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (os.contains("Linux")) {
-			
+			try {
+				Process p = Runtime.getRuntime().exec("ping -4 -c 10 www.google.com.br");
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String linha = buffer.readLine();
+				String[] linhaMedia = null;
+				String media = null;
+
+				while (linha != null) {
+					if (linha.contains("avg")) {
+						linhaMedia = linha.split(" = ");
+						media = linhaMedia[1];
+						linhaMedia = media.split("/");
+						media = linhaMedia[1];
+						break;
+					}
+
+					System.out.println(media + "ms");
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
