@@ -54,9 +54,7 @@ Linux: ping -4 -c 10 www.google.com.br
 
 
 ## Status do projeto
-🚧Em construção🚧
-* Implementação do método ping para Linux
-
+✅ Finalizado ✅
 
 ## Tecnologias
 - [Java](https://www.oracle.com/br/java/)
